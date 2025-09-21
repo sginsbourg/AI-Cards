@@ -1,0 +1,9 @@
+{
+  "id": "hello-py",
+  "name": "Hello Python",
+  "icon": "🐍",
+  "color": "#f59e0b",
+  "inputs": ["name"],
+  "outputs": ["greeting"],
+  "exec": { "type": "python", "file": "hello-py.py" }
+}
