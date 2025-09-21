@@ -157,3 +157,8 @@ io.on('connection', sock => {
 /* ---------- 8.  START  ---------- */
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`AI-Cards ready → http://localhost:${PORT}`));
+
+app.delete('/api/errors', (q, r) => {
+  fs.writeFileSync(CFG.logFile, '');   // truncate
+  r.sendStatus(204);
+});

@@ -1,0 +1,4 @@
+.toast{position:fixed;bottom:20px;right:20px;width:280px;padding:12px;border-radius:6px;color:#fff;font-size:13px;animation:slide .4s ease;}
+.toast.warn{background:#f59e0b}
+.toast.error{background:#ef4444}
+@keyframes slide{from{transform:translateX(100%)}to{transform:translateX(0)}}

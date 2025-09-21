@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI-Cards – Error Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #111;
+      --surface: #1e1e1e;
+      --border: #444;
+      --text: #eee;
+      --accent: #0a84ff;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --error: #ef4444;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .spacer {
+      flex: 1;
+    }
+    input[type="text"] {
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      width: 240px;
+    }
+    button {
+      padding: 0.5rem 0.75rem;
+      border: none;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+    button:hover { filter: brightness(1.15); }
+    button.danger { background: var(--error); }
+    main {
+      flex: 1;
+      overflow: auto;
+      padding: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    th, td {
+      padding: 0.5rem 0.6rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      font-weight: 600;
+    }
+    tr:hover { background: #252525; }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge.warn  { background: var(--warn);  color: #000; }
+    .badge.error { background: var(--error); color: #fff; }
+    .badge.info  { background: var(--accent); color: #fff; }
+    .chip {
+      background: #333;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.75rem;
+    }
+    .no-data {
+      text-align: center;
+      padding: 3rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Error Log</h1>
+    <div class="spacer"></div>
+    <input id="filter" type="text" placeholder="Search…" autocomplete="off">
+    <button id="download">Download CSV</button>
+    <button id="clear" class="danger">Clear Log</button>
+  </header>
+
+  <main>
+    <table id="table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Level</th>
+          <th>Type</th>
+          <th>Card</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="no-data" class="no-data">No errors logged yet – great job!</div>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    let rows = [];
+
+    /* ---------- 1.  FETCH EXISTING ---------- */
+    fetch('/api/errors').then(r => r.json()).then(data => { rows = data.reverse(); render(); });
+
+    /* ---------- 2.  REAL-TIME ---------- */
+    socket.on('error', obj => { rows.unshift(obj); render(); });
+
+    /* ---------- 3.  RENDER ---------- */
+    const tbody = document.getElementById('tbody');
+    const noData = document.getElementById('no-data');
+    const filter = document.getElementById('filter');
+
+    function render() {
+      const q = filter.value.trim().toLowerCase();
+      const filtered = q
+        ? rows.filter(r =>
+            Object.values(r).some(v => String(v).toLowerCase().includes(q))
+          )
+        : rows;
+
+      tbody.innerHTML = '';
+      if (filtered.length === 0) {
+        noData.style.display = 'block';
+        return;
+      }
+      noData.style.display = 'none';
+      filtered.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${new Date(r.ts).toLocaleString()}</td>
+          <td><span class="badge ${r.level}">${r.level}</span></td>
+          <td>${r.type}</td>
+          <td><span class="chip">${r.instanceId || '-'}</span></td>
+          <td title="${r.message}">${r.length > 120 ? r.message.slice(0, 120) + '…' : r.message}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    filter.oninput = render;
+
+    /* ---------- 4.  DOWNLOAD CSV ---------- */
+    document.getElementById('download').onclick = () => {
+      const header = 'Time,Level,Type,Card,Message\n';
+      const csv = header + rows.map(r =>
+        `"${r.ts}","${r.level}","${r.type}","${r.instanceId || ''}","${r.message.replace(/"/g, '""')}"`
+      ).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'ai-cards-errors.csv'; a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    /* ---------- 5.  CLEAR LOG ---------- */
+    document.getElementById('clear').onclick = async () => {
+      if (!confirm('Delete all error entries?')) return;
+      await fetch('/api/errors', { method: 'DELETE' });
+      rows = []; render();
+    };
+  </script>
+</body>
+</html>
