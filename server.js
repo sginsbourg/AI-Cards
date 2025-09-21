@@ -66,6 +66,7 @@ const io   = socketIo(server, { cors: { origin: '*' } });
 
 app.use(express.json());
 app.use(express.static('public'));
+app.use('/README.md', express.static(path.join(__dirname, 'README.md')));
 
 /* ---------- 4.  STATE  ---------- */
 let workspace = { cards: [], wires: [] };
