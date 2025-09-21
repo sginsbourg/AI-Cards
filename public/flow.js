@@ -1,6 +1,13 @@
 /*********************************************************************
  *  AI-Cards  –  Flow Canvas  –  Vanilla JS  –  MIT
  *********************************************************************/
+console.log('🚀 flow.js v2 loaded – building UI');
+
+/* ---------- 1.  DOM HELPERS ---------- */
+const $ = (s, p = document) => p.querySelector(s);
+const $$ = (s, p = document) => p.querySelectorAll(s);
+
+/* ---------- 2.  GLOBALS ---------- */
 const socket = io();
 let templates = [];
 let workspace = { cards: [], wires: [] };
@@ -11,37 +18,35 @@ let redoStack = [];
 const GRID = 20;                // snap grid
 const AUTO_SAVE_MS = 3000;
 
-/* ---------- 1.  DOM HELPERS ---------- */
-const $ = (s, p = document) => p.querySelector(s);
-const $$ = (s, p = document) => p.querySelectorAll(s);
+/* ---------- 3.  RUN AFTER DOM PARSED ---------- */
+window.addEventListener('DOMContentLoaded', () => {
+  (async () => {
+    templates = await (await fetch('/api/templates')).json();
+    workspace = await (await fetch('/api/workspace')).json();
 
-/* ---------- 2.  INITIAL LOAD ---------- */
-(async () => {
-  templates = await (await fetch('/api/templates')).json();
-  workspace = await (await fetch('/api/workspace')).json();
-
-  /* ----- ensure at least one starter card ----- */
-  if (workspace.cards.length === 0) {
-    const starter = templates.find(t => t.id === 'hello-js') || templates[0];
-    if (starter) {
-      workspace.cards.push({
-        instanceId: uuid(),
-        templateId: starter.id,
-        x: 100, y: 100,
-        lastOutput: {}
-      });
+    /* ----- ensure at least one starter card ----- */
+    if (workspace.cards.length === 0) {
+      const starter = templates.find(t => t.id === 'hello-js') || templates[0];
+      if (starter) {
+        workspace.cards.push({
+          instanceId: crypto.randomUUID(),
+          templateId: starter.id,
+          x: 100, y: 100,
+          lastOutput: {}
+        });
+      }
     }
-  }
 
-  buildUI();                 // creates DOM
-  wireUIEvents();            // attaches listeners (ADD button here)
-  workspace.cards.forEach(drawCard);
-  workspace.wires.forEach(drawWire);
-  registerUndoHooks();
-  setInterval(saveWorkspace, AUTO_SAVE_MS);
-})();
+    buildUI();                 // now safe
+    wireUIEvents();
+    workspace.cards.forEach(drawCard);
+    workspace.wires.forEach(drawWire);
+    registerUndoHooks();
+    setInterval(saveWorkspace, AUTO_SAVE_MS);
+  })().catch(e => console.error('💥 flow.js crashed:', e));
+});
 
-/* ---------- 3.  BUILD FULL UI ---------- */
+/* ---------- 4.  BUILD FULL UI ---------- */
 function buildUI() {
   document.body.innerHTML = `
   <header class="top-bar">
@@ -87,10 +92,23 @@ function buildUI() {
   `;
   populateComponentPanel();
   populateAddMenu();         // ← fill drop-down
-  injectCSS();               // ← styles for menu
+
+  /* ===== wire ADD menu immediately ===== */
+  const addBtn = $('#addBtn');
+  const addMenu = $('#addMenu');
+  addBtn.onclick = () => {
+    addMenu.style.display = addMenu.style.display === 'block' ? 'none' : 'block';
+  };
+  window.addEventListener('click', e => {
+    if (!e.target.closest('#addBtn') && !e.target.closest('#addMenu')) {
+      addMenu.style.display = 'none';
+    }
+  });
+
+  injectCSS();
 }
 
-/* ---------- 4.  INJECT CSS (menu + rest) ---------- */
+/* ---------- 5.  INJECT CSS (menu + rest) ---------- */
 function injectCSS() {
   if ($('style[title="flow-css"]')) return;
   const style = document.createElement('style');
@@ -161,7 +179,6 @@ function injectCSS() {
   .card { position: absolute; width: 200px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0.6rem; display: flex; flex-direction: column; gap: 0.4rem; cursor: move; user-select: none; }
   .card.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
   .card-title { font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; }
-  .card-body { font-size: 0.8rem; color: var(--subtle); }
   .card textarea, .card pre { width: 100%; font-size: 0.75rem; font-family: ui-monospace, monospace; border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 4px; padding: 0.3rem; resize: vertical; }
   .card pre { max-height: 100px; overflow: auto; }
   .card button.run { align-self: flex-end; padding: 0.3rem 0.6rem; border: none; background: var(--accent); color: #fff; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
@@ -177,7 +194,7 @@ function injectCSS() {
   document.head.appendChild(style);
 }
 
-/* ---------- 5.  POPULATE LEFT PANEL (drag source) ---------- */
+/* ---------- 9.  POPULATE LEFT PANEL (drag source) ---------- */
 function populateComponentPanel() {
   const list = $('#componentList');
   const search = $('#componentSearch');
@@ -200,7 +217,7 @@ function populateComponentPanel() {
   draw();
 }
 
-/* ---------- 6.  POPULATE ADD DROP-DOWN MENU ---------- */
+/* ---------- 10.  POPULATE ADD DROP-DOWN MENU ---------- */
 function populateAddMenu() {
   const menu = $('#addMenu');
   menu.innerHTML = '';                       // rebuild
@@ -216,24 +233,10 @@ function populateAddMenu() {
   });
 }
 
-/* ---------- 7.  WIRE UI EVENTS (AFTER DOM EXISTS) ---------- */
+/* ---------- 11.  WIRE UI EVENTS (AFTER DOM EXISTS) ---------- */
 function wireUIEvents() {
   const canvas = $('#canvas');
   const wrapper = $('.canvas-wrapper');
-
-  /* ADD button – drop-down menu */
-  const addBtn = $('#addBtn');
-  const addMenu = $('#addMenu');
-  addBtn.onclick = () => {
-    addMenu.style.display = addMenu.style.display === 'block' ? 'none' : 'block';
-  };
-
-  /* close menu if click outside */
-  window.addEventListener('click', e => {
-    if (!e.target.closest('#addBtn') && !e.target.closest('#addMenu')) {
-      addMenu.style.display = 'none';
-    }
-  });
 
   /* README button */
   $('#readmeBtn').onclick = () => window.open('/README.md', '_blank');
@@ -267,7 +270,7 @@ function wireUIEvents() {
       if (e.key === 'y') { e.preventDefault(); redo(); }
       if (e.key === 's') { e.preventDefault(); saveWorkspace(); toast('Saved', 'info'); }
     }
-    if (e.key.toLowerCase() === 'a') { e.preventDefault(); addBtn.click(); }
+    if (e.key.toLowerCase() === 'a') { e.preventDefault(); $('#addBtn').click(); }
   };
 
   /* wheel zoom + pan */
@@ -290,11 +293,11 @@ function wireUIEvents() {
   wrapper.style.cursor = 'grab';
 }
 
-/* ---------- 8.  CARD FACTORY ---------- */
+/* ---------- 12.  CARD FACTORY ---------- */
 function addCard(templateId, x, y) {
   const tpl = templates.find(t => t.id === templateId);
   const instance = {
-    instanceId: uuid(),
+    instanceId: crypto.randomUUID(),
     templateId,
     x: x || 100, y: y || 100,
     lastOutput: {}
@@ -323,7 +326,7 @@ function drawCard(c) {
   $('#canvas').appendChild(div);
 }
 
-/* ---------- 9.  DRAG + SNAP ---------- */
+/* ---------- 13.  DRAG + SNAP ---------- */
 function makeDraggable(el, card) {
   let offX, offY;
   el.onmousedown = down => {
@@ -349,7 +352,7 @@ function makeDraggable(el, card) {
 
 function snap(v) { return Math.round(v / GRID) * GRID; }
 
-/* ---------- 10.  WIRES ---------- */
+/* ---------- 14.  WIRES ---------- */
 let wireFrom = null, wiringMode = false;
 window.addEventListener('keydown', e => { if (e.key.toLowerCase() === 'w') wiringMode = true; });
 window.addEventListener('keyup', e => { if (e.key.toLowerCase() === 'w') wiringMode = false; });
@@ -380,7 +383,7 @@ function updateWires() {
   lines.forEach(l => l.position());
 }
 
-/* ---------- 11.  RUN CARD ---------- */
+/* ---------- 15.  RUN CARD ---------- */
 function runCard(card) {
   const tpl = templates.find(t => t.id === card.templateId);
   const inpEl = $(`#${card.instanceId} .inp`);
@@ -401,7 +404,7 @@ socket.on('error', err => {
   toast(`${err.type}: ${err.message.slice(0, 60)}${err.message.length > 60 ? '…' : ''}`, err.level);
 });
 
-/* ---------- 12.  ZOOM & PAN ---------- */
+/* ---------- 16.  ZOOM & PAN ---------- */
 let zoom = 1, panX = 0, panY = 0;
 function setZoom(z) {
   zoom = Math.max(0.3, Math.min(2, z));
@@ -431,7 +434,7 @@ function zoomFit() {
   updateCanvasTransform();
 }
 
-/* ---------- 13.  UNDO / REDO ---------- */
+/* ---------- 17.  UNDO / REDO ---------- */
 function pushUndo() {
   undoStack.push(JSON.stringify(workspace));
   redoStack.length = 0;
@@ -466,12 +469,12 @@ function rebuildCanvas() {
   workspace.wires.forEach(drawWire);
 }
 
-/* ---------- 14.  SAVE ---------- */
+/* ---------- 18.  SAVE ---------- */
 function saveWorkspace() {
   fetch('/api/workspace', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(workspace) });
 }
 
-/* ---------- 15.  TOAST ---------- */
+/* ---------- 19.  TOAST ---------- */
 function toast(msg, level = 'info') {
   const container = $('#toastContainer');
   const div = document.createElement('div');
