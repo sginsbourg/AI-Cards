@@ -37,6 +37,8 @@ function buildUI() {
       <button id="redoBtn" title="Redo (Ctrl-Y)">↷ Redo</button>
       <button id="saveBtn" title="Save Now (Ctrl-S)">💾 Save</button>
       <button id="zoomFitBtn" title="Fit to screen">🔍 Fit</button>
+	  <button id="readmeBtn" title="View README">📖 README</button>
+</nav>
     </nav>
     <div class="spacer"></div>
     <div class="zoom-controls">
@@ -50,7 +52,7 @@ function buildUI() {
     <!-- ~~~~~~ LEFT PANEL ~~~~~~ -->
     <aside class="left-panel">
       <input id="componentSearch" placeholder="Search components…" autocomplete="off">
-      <div id="componentList" class="component-list"></div>
+      <div id="componentList" class="component-list" style="display:flex"></div>
       <div class="panel-footer">
         <small>Drag → canvas<br>Hold W + click to wire</small>
       </div>
@@ -76,9 +78,9 @@ if (!$('style[title="flow-css"]')) {
   style.title = 'flow-css';
   style.textContent = `
   :root {
-    --bg: #111;
-    --surface: #1e1e1e;
-    --border: #444;
+    --bg: #0d1117;        /* GitHub dark-blue */
+    --surface: #161b22;
+    --border: #30363d;
     --text: #eee;
     --subtle: #888;
     --accent: #0a84ff;
@@ -172,11 +174,20 @@ function wireUIEvents() {
   $('#zoomIn').onclick  = () => setZoom(zoom * 1.2);
   $('#zoomOut').onclick = () => setZoom(zoom / 1.2);
   $('#zoomFitBtn').onclick = zoomFit;
+  
+  /* add */
+  $('#addBtn').onclick = () => {
+	  const panel = $('#componentList');
+	  panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
+  };
 
   /* undo/redo */
   $('#undoBtn').onclick = undo;
   $('#redoBtn').onclick = redo;
   $('#saveBtn').onclick = () => { saveWorkspace(); toast('Saved', 'info'); };
+  
+  /* README */
+  $('#readmeBtn').onclick = () => window.open('/README.md', '_blank');
 
   /* keyboard */
   window.onkeydown = e => {
