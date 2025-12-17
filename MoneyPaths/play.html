@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing Card - Free Spirit Money</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="play-mode">
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation / Back Home -->
+    <nav class="play-nav">
+        <a href="index.html" class="back-link">← Deck</a>
+        <h1 id="card-title" class="play-header-title">Loading...</h1>
+    </nav>
+
+    <main class="play-container">
+        <!-- Panel 1: The Mission -->
+        <section class="play-panel mission-panel">
+            <h2><span class="icon">📜</span> The Mission</h2>
+            <p id="mission-desc">Your objective in this realm...</p>
+
+            <div class="quest-log">
+                <h3>Daily Quests</h3>
+                <ul class="checklist" id="quest-list">
+                    <!-- Injected via JS -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Panel 2: The Action -->
+        <section class="play-panel action-panel">
+            <h2><span class="icon">⚡</span> Action Zone</h2>
+
+            <div class="timer-widget">
+                <div class="timer-display" id="timer">25:00</div>
+                <div class="timer-controls">
+                    <button id="start-timer">Focus</button>
+                    <button id="reset-timer">Rest</button>
+                </div>
+            </div>
+
+            <div class="notes-widget">
+                <h3>Scratchpad</h3>
+                <textarea placeholder="Capture your brilliant ideas here..."></textarea>
+            </div>
+        </section>
+
+        <!-- Panel 3: The Armory (Tools) -->
+        <section class="play-panel tools-panel">
+            <h2><span class="icon">🎒</span> The Armory</h2>
+            <div class="tools-grid" id="tools-grid">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+    </main>
+
+    <script src="play.js"></script>
+</body>
+
+</html>

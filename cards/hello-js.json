@@ -1,9 +1,0 @@
-{
-  "id": "hello-js",
-  "name": "Hello JS",
-  "icon": "👋",
-  "color": "#3b82f6",
-  "inputs": ["name"],
-  "outputs": ["greeting"],
-  "exec": { "type": "node", "file": "hello-js.js" }
-}
