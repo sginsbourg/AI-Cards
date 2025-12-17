@@ -137,6 +137,81 @@ const cardData = {
             { name: "OpenAI Playground", url: "https://platform.openai.com", icon: "🧠" }
         ]
     },
+    smartcontract: {
+        title: "Code Auditor",
+        mission: "Secure the decentralized world one line at a time.",
+        quests: [
+            "Run Static Analysis (Slither)",
+            "Manual Logic Review",
+            "Write Vulnerability Report",
+            "Verify Fixes"
+        ],
+        tools: [
+            { name: "Remix IDE", url: "https://remix.ethereum.org", icon: "💎" },
+            { name: "Etherscan", url: "https://etherscan.io", icon: "🔍" },
+            { name: "Code4rena", url: "https://code4rena.com", icon: "🏟️" }
+        ]
+    },
+    cyber: {
+        title: "Cyber Sentinel",
+        mission: "Hack the planet (legally) and get paid for it.",
+        quests: [
+            "Recon Subdomains",
+            "Fuzz Input Fields",
+            "Report Critical Bug",
+            "Retest Patch"
+        ],
+        tools: [
+            { name: "HackerOne", url: "https://hackerone.com", icon: "🐞" },
+            { name: "Burp Suite", url: "https://portswigger.net/burp", icon: "🟧" },
+            { name: "OWASP", url: "https://owasp.org", icon: "🛡️" }
+        ]
+    },
+    devops: {
+        title: "Cloud Architect",
+        mission: "Build the invisible backbone of the internet.",
+        quests: [
+            "Provision EC2/Kubernetes",
+            "Fix CI/CD Pipeline",
+            "Optimize Costs",
+            "Automate Backups"
+        ],
+        tools: [
+            { name: "AWS Console", url: "https://aws.amazon.com", icon: "☁️" },
+            { name: "Docker", url: "https://www.docker.com", icon: "🐳" },
+            { name: "Terraform", url: "https://www.terraform.io", icon: "🏗️" }
+        ]
+    },
+    api: {
+        title: "API Tycoon",
+        mission: "Turn data into a product accessible by millions.",
+        quests: [
+            "Scrape Target Data",
+            "Build Flask/Node Endpoint",
+            "Deploy to RapidAPI",
+            "Market to Devs"
+        ],
+        tools: [
+            { name: "RapidAPI", url: "https://rapidapi.com", icon: "🐙" },
+            { name: "Postman", url: "https://www.postman.com", icon: "🚀" },
+            { name: "Python", url: "https://www.python.org", icon: "🐍" }
+        ]
+    },
+    techwriter: {
+        title: "Docs Doctor",
+        mission: "Translate complex code into beautiful documentation.",
+        quests: [
+            "Interview Developers",
+            "Draft API Reference",
+            "Create 'Getting Started' Guide",
+            "Publish to GitBook"
+        ],
+        tools: [
+            { name: "GitBook", url: "https://www.gitbook.com", icon: "📚" },
+            { name: "Notion", url: "https://notion.so", icon: "📓" },
+            { name: "Grammarly", url: "https://grammarly.com", icon: "✍️" }
+        ]
+    },
     assets: {
         title: "Asset Artisan",
         mission: "Create digital assets once, sell them forever.",
@@ -230,5 +305,107 @@ document.addEventListener('DOMContentLoaded', () => {
         time = 25 * 60;
         updateDisplay();
         startBtn.innerText = "Focus";
+    });
+
+    // --- PERSISTENCE & GAMEPLAY LOGIC ---
+
+    // Load Stats
+    let playerStats = JSON.parse(localStorage.getItem('fsm_stats')) || { xp: 0, level: 1, earnings: 0, questsDone: 0 };
+
+    function updateStatsUI() {
+        document.getElementById('level-stat').innerText = playerStats.level;
+        document.getElementById('earnings-stat').innerText = '$' + playerStats.earnings.toLocaleString();
+        document.getElementById('quests-stat').innerText = playerStats.questsDone;
+
+        // Simple Level Up Logic: 100 XP per level
+        const xpForNext = playerStats.level * 100;
+        const percent = Math.min(100, (playerStats.xp / xpForNext) * 100);
+        document.getElementById('xp-bar').style.width = percent + '%';
+    }
+    updateStatsUI();
+
+    function saveStats() {
+        localStorage.setItem('fsm_stats', JSON.stringify(playerStats));
+        updateStatsUI();
+    }
+
+    // Revenue Tracker
+    document.getElementById('add-revenue-btn').addEventListener('click', () => {
+        const amt = parseFloat(document.getElementById('revenue-input').value);
+        if (!isNaN(amt) && amt > 0) {
+            playerStats.earnings += amt;
+            playerStats.xp += amt * 0.1; // XP for earning money
+            saveStats();
+            document.getElementById('revenue-input').value = '';
+            alert(`🤑 Cha-ching! Added $${amt}`);
+        }
+    });
+
+    // Checkbox Logic (XP)
+    questList.addEventListener('change', (e) => {
+        if (e.target.type === 'checkbox') {
+            if (e.target.checked) {
+                playerStats.questsDone++;
+                playerStats.xp += 25; // 25 XP per quest
+                if (playerStats.xp >= playerStats.level * 100) {
+                    playerStats.level++;
+                    playerStats.xp = 0;
+                    alert("🎉 LEVEL UP! You are now Level " + playerStats.level);
+                }
+            } else {
+                playerStats.questsDone--;
+                playerStats.xp -= 25;
+            }
+            saveStats();
+        }
+    });
+
+    // Scratchpad Auto-Save
+    const pad = document.getElementById('scratchpad');
+    pad.value = localStorage.getItem(`fsm_scratchpad_${cardKey}`) || '';
+    pad.addEventListener('input', () => {
+        localStorage.setItem(`fsm_scratchpad_${cardKey}`, pad.value);
+    });
+
+
+    // --- MOCK LIVE DATA ---
+    const liveFeed = document.getElementById('live-feed');
+    const mockData = {
+        freelance: ["🔥 New Job: React Dev ($50/hr)", "🔥 New Job: Copywriter needed", "Trending: SEO Writing"],
+        ecommerce: ["📈 Shopify Stock +1.2%", "Hot Product: Heated Vests", "Q4 Trend: Eco-packaging"],
+        crypto: ["BTC: $98,000 (+2%)", "ETH: $4,200", "Gas: 15 gwei (Low)"],
+        content: ["Trending: #AIArt", "Viral Audio: 'Dreamy Vibe'", "Strategy: Short-form"],
+        smartcontract: ["High Severity Bug Found", "Audit Bounty: $50,000", "New Protocol Launching"],
+        cyber: ["New Bounty Program: Tesla", "XSS Vuln Reported", "Critical Patch Tuesday"],
+        devops: ["AWS East Region Outage", "Kubernetes Update v1.29", "Cloud Cost Optimization Tips"],
+        api: ["RapidAPI Trend: Text-to-Speech", "OpenAI API Usage Spike", "Data Scraping Legal Update"],
+        techwriter: ["New Stripe API Docs", "Hiring: Senior Tech Writer", "Markdown vs AsciiDoc"],
+        // fallback
+        default: ["Market steady", "Opportunity detected", "Check emails"]
+    };
+
+    const feedItems = mockData[cardKey] || mockData.default;
+    liveFeed.innerHTML = feedItems.map(item => `<div class="live-item"><strong>Update</strong> ${item}</div>`).join('');
+
+
+    // --- SIMPLE AI COPILOT MOCK ---
+    const aiBtn = document.getElementById('ai-generate-btn');
+    const aiOutput = document.getElementById('ai-output');
+
+    aiBtn.addEventListener('click', () => {
+        const topic = document.getElementById('ai-context').value;
+        if (!topic) return;
+
+        aiOutput.innerText = "🤖 Thinking...";
+
+        setTimeout(() => {
+            const templates = [
+                `Here is a plan for ${topic}:\n1. Research top competitors.\n2. Create a Minimum Viable Version.\n3. Launch on social media.`,
+                `Draft for ${topic}:\n"Hey [Name], I noticed you need help with ${topic}. I specialize in this..."`,
+                `Idea: Combine ${topic} with AI to automate the boring parts.`
+            ];
+            const random = templates[Math.floor(Math.random() * templates.length)];
+            aiOutput.innerText = random;
+        }, 1000);
     });
 });

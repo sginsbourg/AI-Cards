@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playing Card - Free Spirit Money</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Permanent+Marker&display=swap"
         rel="stylesheet">
@@ -24,6 +25,25 @@
     </nav>
 
     <main class="play-container">
+        <!-- Persistent Stats Panel -->
+        <section class="stats-panel">
+            <div class="stat-box">
+                <div class="stat-label">Career Level</div>
+                <div class="stat-value" id="level-stat">1</div>
+                <div class="xp-bar-container">
+                    <div class="xp-bar-fill" id="xp-bar"></div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Total Earnings</div>
+                <div class="stat-value" id="earnings-stat">$0.00</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Quests Done</div>
+                <div class="stat-value" id="quests-stat">0</div>
+            </div>
+        </section>
+
         <!-- Panel 1: The Mission -->
         <section class="play-panel mission-panel">
             <h2><span class="icon">📜</span> The Mission</h2>
@@ -34,6 +54,13 @@
                 <ul class="checklist" id="quest-list">
                     <!-- Injected via JS -->
                 </ul>
+            </div>
+
+            <div class="live-data-widget" id="live-data-widget">
+                <h3>📡 Live Intel</h3>
+                <div id="live-feed">
+                    <p>Loading market data...</p>
+                </div>
             </div>
         </section>
 
@@ -51,7 +78,24 @@
 
             <div class="notes-widget">
                 <h3>Scratchpad</h3>
-                <textarea placeholder="Capture your brilliant ideas here..."></textarea>
+                <textarea id="scratchpad" placeholder="Capture your brilliant ideas here..."></textarea>
+            </div>
+
+            <div class="ai-widget">
+                <h3>🤖 AI Copilot</h3>
+                <input type="text" id="ai-context" class="ai-input"
+                    placeholder="Enter topic (e.g., 'Web Design' or 'Bitcoin')">
+                <button class="ai-btn" id="ai-generate-btn">Generate Content</button>
+                <div class="ai-output" id="ai-output">AI output will appear here...</div>
+            </div>
+
+            <div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                <h3>Add Revenue</h3>
+                <div style="display: flex; gap: 5px;">
+                    <input type="number" id="revenue-input" placeholder="$ Amount" class="ai-input" style="width: 70%;">
+                    <button id="add-revenue-btn" class="ai-btn"
+                        style="width: 30%; background: var(--accent-3); color: #000;">Add</button>
+                </div>
             </div>
         </section>
 
