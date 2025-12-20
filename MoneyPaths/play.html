@@ -44,29 +44,41 @@
             </div>
         </section>
 
-        <!-- Panel 1: The Mission -->
+        <!-- Panel 1: The Strategy -->
         <section class="play-panel mission-panel">
-            <h2><span class="icon">📜</span> The Mission</h2>
+            <h2><span class="icon">📜</span> The Strategy</h2>
             <p id="mission-desc">Your objective in this realm...</p>
 
-            <div class="quest-log">
-                <h3>Daily Quests</h3>
-                <ul class="checklist" id="quest-list">
+            <div class="strategy-section">
+                <h3>🛠️ Basic Workflow</h3>
+                <ol class="workflow-list" id="workflow-list">
+                    <!-- Injected via JS -->
+                </ol>
+            </div>
+
+            <div class="strategy-section">
+                <h3>✅ Requirements</h3>
+                <ul class="checklist" id="requirements-list">
                     <!-- Injected via JS -->
                 </ul>
             </div>
 
-            <div class="live-data-widget" id="live-data-widget">
-                <h3>📡 Live Intel</h3>
-                <div id="live-feed">
-                    <p>Loading market data...</p>
-                </div>
+            <div class="strategy-section">
+                <h3>💰 How it Pays</h3>
+                <p id="payout-text">Loading payout info...</p>
             </div>
         </section>
 
         <!-- Panel 2: The Action -->
         <section class="play-panel action-panel">
             <h2><span class="icon">⚡</span> Action Zone</h2>
+
+            <div class="quest-log">
+                <h3>Daily Quests (XP)</h3>
+                <ul class="checklist" id="quest-list">
+                    <!-- Injected via JS -->
+                </ul>
+            </div>
 
             <div class="timer-widget">
                 <div class="timer-display" id="timer">25:00</div>
@@ -78,23 +90,15 @@
 
             <div class="notes-widget">
                 <h3>Scratchpad</h3>
-                <textarea id="scratchpad" placeholder="Capture your brilliant ideas here..."></textarea>
-            </div>
-
-            <div class="ai-widget">
-                <h3>🤖 AI Copilot</h3>
-                <input type="text" id="ai-context" class="ai-input"
-                    placeholder="Enter topic (e.g., 'Web Design' or 'Bitcoin')">
-                <button class="ai-btn" id="ai-generate-btn">Generate Content</button>
-                <div class="ai-output" id="ai-output">AI output will appear here...</div>
+                <textarea id="scratchpad" placeholder="Capture your findings/notes here..."></textarea>
             </div>
 
             <div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
-                <h3>Add Revenue</h3>
+                <h3>Log Revenue</h3>
                 <div style="display: flex; gap: 5px;">
                     <input type="number" id="revenue-input" placeholder="$ Amount" class="ai-input" style="width: 70%;">
                     <button id="add-revenue-btn" class="ai-btn"
-                        style="width: 30%; background: var(--accent-3); color: #000;">Add</button>
+                        style="width: 30%; background: var(--accent-3); color: #000;">Log</button>
                 </div>
             </div>
         </section>
