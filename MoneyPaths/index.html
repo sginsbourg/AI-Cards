@@ -24,9 +24,20 @@
             <p class="tagline">Pick a card. Choose your path. Earn freely.</p>
         </header>
 
-        <section class="card-deck">
+        <div class="filter-bar">
+            <span>Sort by:</span>
+            <div class="filter-btns">
+                <button class="filter-btn active" data-sort="default">Default</button>
+                <button class="filter-btn" data-sort="alpha">A - Z</button>
+                <button class="filter-btn" data-sort="potential">Potential</button>
+                <button class="filter-btn" data-sort="category">Category</button>
+            </div>
+        </div>
+
+        <section class="card-deck" id="card-deck">
             <!-- NEW 1: Smart Contract Auditor (Top Tier Software) -->
-            <div class="money-card" data-card="smartcontract">
+            <div class="money-card" data-card="smartcontract" data-earnings="50000" data-category="Tech"
+                data-title="Code Auditor">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🛡️</div>
@@ -46,7 +57,8 @@
             </div>
 
             <!-- NEW 2: Cyber Security (High Pay Software) -->
-            <div class="money-card" data-card="cyber">
+            <div class="money-card" data-card="cyber" data-earnings="100000" data-category="Tech"
+                data-title="Cyber Sentinel">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🐞</div>
@@ -66,7 +78,8 @@
             </div>
 
             <!-- NEW 3: DevOps (High Hr Rate) -->
-            <div class="money-card" data-card="devops">
+            <div class="money-card" data-card="devops" data-earnings="40000" data-category="Tech"
+                data-title="Cloud Architect">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">☁️</div>
@@ -86,7 +99,7 @@
             </div>
 
             <!-- NEW 4: API Broker -->
-            <div class="money-card" data-card="api">
+            <div class="money-card" data-card="api" data-earnings="20000" data-category="Tech" data-title="API Tycoon">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🔌</div>
@@ -106,7 +119,8 @@
             </div>
 
             <!-- NEW 5: Tech Writer -->
-            <div class="money-card" data-card="techwriter">
+            <div class="money-card" data-card="techwriter" data-earnings="12000" data-category="Content"
+                data-title="Docs Doctor">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">📝</div>
@@ -126,7 +140,8 @@
             </div>
 
             <!-- EXISTING 1: Crypto (High Risk/Reward) -->
-            <div class="money-card" data-card="crypto">
+            <div class="money-card" data-card="crypto" data-earnings="150000" data-category="Business"
+                data-title="Crypto Nomad">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">📈</div>
@@ -146,7 +161,8 @@
             </div>
 
             <!-- EXISTING 2: SaaS (moved logic text only) -->
-            <div class="money-card" data-card="saas">
+            <div class="money-card" data-card="saas" data-earnings="100000" data-category="Tech"
+                data-title="SaaS Sorcery">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">⚡</div>
@@ -168,7 +184,8 @@
 
 
             <!-- Card 3: E-Com (Rank 3) -->
-            <div class="money-card" data-card="ecommerce">
+            <div class="money-card" data-card="ecommerce" data-earnings="50000" data-category="Business"
+                data-title="E-Com Empire">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🛍️</div>
@@ -188,7 +205,8 @@
             </div>
 
             <!-- Card 4: Content (Rank 4) -->
-            <div class="money-card" data-card="content">
+            <div class="money-card" data-card="content" data-earnings="50000" data-category="Content"
+                data-title="Creator Cosmos">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🎥</div>
@@ -208,7 +226,8 @@
             </div>
 
             <!-- Card 5: Newsletter Baron (Rank 5) -->
-            <div class="money-card" data-card="newsletter">
+            <div class="money-card" data-card="newsletter" data-earnings="50000" data-category="Content"
+                data-title="Newsletter Baron">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">�</div>
@@ -228,7 +247,8 @@
             </div>
 
             <!-- Card 6: Domain Flipper (Rank 6) -->
-            <div class="money-card" data-card="domains">
+            <div class="money-card" data-card="domains" data-earnings="50000" data-category="Business"
+                data-title="Domain Ranger">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🌐</div>
@@ -248,7 +268,8 @@
             </div>
 
             <!-- Card 7: Coaching (Rank 7) -->
-            <div class="money-card" data-card="coaching">
+            <div class="money-card" data-card="coaching" data-earnings="30000" data-category="Content"
+                data-title="Soul Coaching">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">�</div>
@@ -269,7 +290,8 @@
             </div>
 
             <!-- Card 8: AI Automation (Rank 8) -->
-            <div class="money-card" data-card="fia">
+            <div class="money-card" data-card="fia" data-earnings="25000" data-category="Tech"
+                data-title="AI Automator">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">�</div>
@@ -289,7 +311,8 @@
             </div>
 
             <!-- Card 9: Affiliate (Rank 9) -->
-            <div class="money-card" data-card="affiliate">
+            <div class="money-card" data-card="affiliate" data-earnings="20000" data-category="Content"
+                data-title="Affiliate Alchemy">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🔗</div>
@@ -310,7 +333,8 @@
             </div>
 
             <!-- Card 10: Community (Rank 10) -->
-            <div class="money-card" data-card="community">
+            <div class="money-card" data-card="community" data-earnings="20000" data-category="Content"
+                data-title="Tribe Builder">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🤝</div>
@@ -330,7 +354,8 @@
             </div>
 
             <!-- Card 11: App Reseller (Rank 11) -->
-            <div class="money-card" data-card="appresell">
+            <div class="money-card" data-card="appresell" data-earnings="15000" data-category="Business"
+                data-title="White Labeler">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">�</div>
@@ -350,7 +375,8 @@
             </div>
 
             <!-- Card 12: Freelance (Rank 12) -->
-            <div class="money-card" data-card="freelance">
+            <div class="money-card" data-card="freelance" data-earnings="15000" data-category="Business"
+                data-title="Freelance Freedom">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">�</div>
@@ -370,7 +396,8 @@
             </div>
 
             <!-- Card 13: Data Analyst (Rank 13) -->
-            <div class="money-card" data-card="data">
+            <div class="money-card" data-card="data" data-earnings="12000" data-category="Tech"
+                data-title="Data Oracle">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">📊</div>
@@ -390,7 +417,8 @@
             </div>
 
             <!-- Card 14: Rank & Rent (Rank 14) -->
-            <div class="money-card" data-card="rankrent">
+            <div class="money-card" data-card="rankrent" data-earnings="10000" data-category="Business"
+                data-title="Local SEO Lord">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">📍</div>
@@ -410,7 +438,8 @@
             </div>
 
             <!-- Card 15: Prompt Engineer (Rank 15) -->
-            <div class="money-card" data-card="prompt">
+            <div class="money-card" data-card="prompt" data-earnings="10000" data-category="Tech"
+                data-title="Prompt Pilot">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🗣️</div>
@@ -430,7 +459,8 @@
             </div>
 
             <!-- Card 16: Voice Artist (Rank 16) -->
-            <div class="money-card" data-card="voice">
+            <div class="money-card" data-card="voice" data-earnings="8000" data-category="Content"
+                data-title="Voice Artist">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🎙️</div>
@@ -450,7 +480,8 @@
             </div>
 
             <!-- Card 17: Online Tutor (Rank 17) -->
-            <div class="money-card" data-card="tutor">
+            <div class="money-card" data-card="tutor" data-earnings="6000" data-category="Content"
+                data-title="Knowledge Guide">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🎓</div>
@@ -470,7 +501,8 @@
             </div>
 
             <!-- Card 18: Asset Artisan (Rank 18) -->
-            <div class="money-card" data-card="assets">
+            <div class="money-card" data-card="assets" data-earnings="5000" data-category="Content"
+                data-title="Asset Artisan">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🎨</div>
@@ -490,7 +522,8 @@
             </div>
 
             <!-- Card 19: Virtual Assistant (Rank 19) -->
-            <div class="money-card" data-card="va">
+            <div class="money-card" data-card="va" data-earnings="5000" data-category="Business"
+                data-title="Virtuoso VA">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">�</div>
@@ -510,7 +543,8 @@
             </div>
 
             <!-- Card 20: User Tester (Rank 20) -->
-            <div class="money-card" data-card="testing">
+            <div class="money-card" data-card="testing" data-earnings="2000" data-category="Business"
+                data-title="UX Tester">
                 <div class="card-inner">
                     <div class="card-front">
                         <div class="card-icon">🧪</div>
