@@ -301,151 +301,566 @@ const cardData = {
             { name: "Bugcrowd", url: "https://bugcrowd.com", icon: "🐛" },
             { name: "Burp Suite", url: "https://portswigger.net/burp", icon: "🟧" }
         ]
+    },
+    devops: {
+        title: "Cloud Architect",
+        mission: "Build and scale the invisible backbone of the internet.",
+        workflow: [
+            "Master AWS, GCP, or Azure basics.",
+            "Learn Infrastructure as Code (Terraform).",
+            "Get certified (AWS Solutions Architect).",
+            "Apply for remote high-paying DevOps roles."
+        ],
+        requirements: [
+            "Cloud platform knowledge",
+            "Linux/Shell scripting",
+            "CI/CD experience"
+        ],
+        payoutInfo: "High salaries or consulting rates ($100-$300/hr).",
+        quests: [
+            "Provision Infrastructure",
+            "Fix Build Pipeline",
+            "Optimize Spending",
+            "Run Security Scan"
+        ],
+        tools: [
+            { name: "AWS", url: "https://aws.amazon.com", icon: "☁️" },
+            { name: "Terraform", url: "https://www.terraform.io", icon: "🏗️" },
+            { name: "Docker", url: "https://www.docker.com", icon: "🐳" }
+        ]
+    },
+    api: {
+        title: "API Tycoon",
+        mission: "Monetize data and logic via programmatic endpoints.",
+        workflow: [
+            "Find a useful data source or logic.",
+            "Build a REST API using Node.js or Python.",
+            "List on a marketplace (RapidAPI).",
+            "Collect subscription fees from users."
+        ],
+        requirements: [
+            "Backend development skills",
+            "Server management knowledge",
+            "Data sourcing/scraping"
+        ],
+        payoutInfo: "Monthly subscriptions. Recurring revenue.",
+        quests: [
+            "Add New Endpoint",
+            "Optimize Query Time",
+            "Market to Developers",
+            "Check Usage Logs"
+        ],
+        tools: [
+            { name: "RapidAPI", url: "https://rapidapi.com", icon: "🐙" },
+            { name: "Postman", url: "https://www.postman.com", icon: "🚀" },
+            { name: "Vercel", url: "https://vercel.com", icon: "▲" }
+        ]
+    },
+    techwriter: {
+        title: "Docs Doctor",
+        mission: "Translate complex tech into clear, readable documentation.",
+        workflow: [
+            "Build a technical writing portfolio.",
+            "Apply for developer relations or tech docs roles.",
+            "Offer freelance API documentation services.",
+            "Publish tutorials on Dev.to or Medium."
+        ],
+        requirements: [
+            "Excellent writing skills",
+            "Basic coding/API knowledge",
+            "Attention to detail"
+        ],
+        payoutInfo: "Monthly salary or $500-$2000 per article.",
+        quests: [
+            "Draft New Tutorial",
+            "Interview Developer",
+            "Fix 404 Links in Docs",
+            "Publish API Reference"
+        ],
+        tools: [
+            { name: "GitBook", url: "https://www.gitbook.com", icon: "📚" },
+            { name: "Write the Docs", url: "https://www.writethedocs.org", icon: "🌍" },
+            { name: "Notion", url: "https://notion.so", icon: "📓" }
+        ]
+    },
+    prompt: {
+        title: "Prompt Pilot",
+        mission: "Engineer precise AI inputs to generate high-value outputs.",
+        workflow: [
+            "Master LLM prompting techniques.",
+            "List high-performing prompts on marketplaces.",
+            "Offer AI automation consulting.",
+            "Build custom GPTs for specific niches."
+        ],
+        requirements: [
+            "Deep understanding of LLMs",
+            "Iterative testing mindset",
+            "Creative problem solving"
+        ],
+        payoutInfo: "Prompt sales or consulting fees ($1k-$10k/mo).",
+        quests: [
+            "Refine Core Prompt",
+            "Test Against Edge Cases",
+            "List on PromptBase",
+            "Create Demo Output"
+        ],
+        tools: [
+            { name: "PromptBase", url: "https://promptbase.com", icon: "💎" },
+            { name: "ChatGPT", url: "https://chatgpt.com", icon: "🤖" },
+            { name: "Midjourney", url: "https://www.midjourney.com", icon: "🎨" }
+        ]
+    },
+    newsletter: {
+        title: "Newsletter Baron",
+        mission: "Build a direct relationship with an audience via email.",
+        workflow: [
+            "Identify a niche interest.",
+            "Start a free newsletter (Substack/Beehiiv).",
+            "Growth hack via social media (X/LinkedIn).",
+            "Monetize via sponsorships or premium tiers."
+        ],
+        requirements: [
+            "Curation/Writing consistency",
+            "Marketing/Growth mindset",
+            "Deep niche expertise"
+        ],
+        payoutInfo: "Sponsorships and monthly subscriptions.",
+        quests: [
+            "Draft Weekly Issue",
+            "Grow List by 10 New Subs",
+            "Pitch Sponsor",
+            "Analyze Open Rates"
+        ],
+        tools: [
+            { name: "Substack", url: "https://substack.com", icon: "📝" },
+            { name: "Beehiiv", url: "https://www.beehiiv.com", icon: "🐝" },
+            { name: "ConvertKit", url: "https://convertkit.com", icon: "📧" }
+        ]
+    },
+    domains: {
+        title: "Domain Ranger",
+        mission: "Invest in high-potential digital real estate.",
+        workflow: [
+            "Research trending keywords.",
+            "Buy expired or undervalued domains.",
+            "List on marketplaces (Sedo/Afternic).",
+            "Actively outbound to potential buyers."
+        ],
+        requirements: [
+            "Capital for registration fees",
+            "Market research skills",
+            "Patience for the right buyer"
+        ],
+        payoutInfo: "Capital gains on sales (flipping).",
+        quests: [
+            "Research 5 New Domains",
+            "List domains for Auction",
+            "Renew priority assets",
+            "Outbound 1 Potential Buyer"
+        ],
+        tools: [
+            { name: "GoDaddy Auctions", url: "https://auctions.godaddy.com", icon: "🌐" },
+            { name: "Sedo", url: "https://sedo.com", icon: "💰" },
+            { name: "Namecheap", url: "https://www.namecheap.com", icon: "🏷️" }
+        ]
+    },
+    voice: {
+        title: "Voice Artist",
+        mission: "Lend your unique voice to brands, books, and ads.",
+        workflow: [
+            "Set up a home studio/quiet space.",
+            "Create a demo reel (Commercial, Narration).",
+            "Audition for projects on ACX or Voices.com.",
+            "Deliver high-quality audio files."
+        ],
+        requirements: [
+            "Decent microphone & audio gear",
+            "Vocal range/Control",
+            "Basic audio editing skills"
+        ],
+        payoutInfo: "Payment per project or royalties (ACX).",
+        quests: [
+            "Record 3 Auditions",
+            "Polish Demo Reel",
+            "Update Profile",
+            "Deliver Mastered Audio"
+        ],
+        tools: [
+            { name: "ACX", url: "https://www.acx.com", icon: "🎙️" },
+            { name: "Voices.com", url: "https://www.voices.com", icon: "📣" },
+            { name: "Fiverr", url: "https://www.fiverr.com", icon: "🟢" }
+        ]
+    },
+    tutor: {
+        title: "Knowledge Guide",
+        mission: "Teach your skills to students worldwide.",
+        workflow: [
+            "Identify what you can teach (Language, Code, Music).",
+            "Sign up on marketplace platforms (Preply).",
+            "Set your hourly rate and schedule.",
+            "Deliver value and get 5-star reviews."
+        ],
+        requirements: [
+            "Expertise in your subject",
+            "Patience & Teaching ability",
+            "Good webcam & headset"
+        ],
+        payoutInfo: "Hourly rate ($20-$100+/hr).",
+        quests: [
+            "Prepare Lesson Plan",
+            "Update Profile Bio",
+            "Message 5 Students",
+            "Host Trial Lesson"
+        ],
+        tools: [
+            { name: "Preply", url: "https://preply.com", icon: "🎓" },
+            { name: "iTalki", url: "https://www.italki.com", icon: "🗣️" },
+            { name: "Outschool", url: "https://outschool.com", icon: "🎒" }
+        ]
+    },
+    assets: {
+        title: "Asset Artisan",
+        mission: "Create digital products that sell while you sleep.",
+        workflow: [
+            "Choose a format (Notion templates, 3D, UI kit).",
+            "Build a high-quality, polished asset.",
+            "Publish on Gumroad or a marketplace.",
+            "Promote via Pinterest, X, or LinkedIn."
+        ],
+        requirements: [
+            "Design/Development skills",
+            "Understanding of market needs",
+            "Storefront management"
+        ],
+        payoutInfo: "Scalable passive income from repeat sales.",
+        quests: [
+            "Design New Version",
+            "Upload 1 New Listing",
+            "Write Sales Copy",
+            "Reply to Support Email"
+        ],
+        tools: [
+            { name: "Gumroad", url: "https://gumroad.com", icon: "🧊" },
+            { name: "Creative Market", url: "https://creativemarket.com", icon: "🎨" },
+            { name: "Envato", url: "https://envato.com", icon: "🛒" }
+        ]
+    },
+    va: {
+        title: "Virtuoso VA",
+        mission: "Provide elite remote assistance to founders and teams.",
+        workflow: [
+            "Identify your administrative strengths.",
+            "Join VA specialized cold-calling or listing sites.",
+            "Network on LinkedIn with busy founders.",
+            "Manage calendars, email, and operations."
+        ],
+        requirements: [
+            "Exceptional organization",
+            "English proficiency",
+            "Proficiency in Slack/Notion/Gmail"
+        ],
+        payoutInfo: "Hourly retainer or fixed fee ($1k-$5k/mo).",
+        quests: [
+            "Clear Inbox Zero",
+            "Schedule 3 Meetings",
+            "Update CRM Data",
+            "Send Weekly Report"
+        ],
+        tools: [
+            { name: "Belay", url: "https://belaysolutions.com", icon: "🏔️" },
+            { name: "Fancy Hands", url: "https://www.fancyhands.com", icon: "✋" },
+            { name: "Upwork", url: "https://upwork.com", icon: "🟢" }
+        ]
+    },
+    testing: {
+        title: "UX Tester",
+        mission: "Evaluate website usability and get paid for your thoughts.",
+        workflow: [
+            "Register on testing platforms.",
+            "Pass the initial practice test.",
+            "Accept available testing opportunities.",
+            "Record your screen and speak your thoughts aloud."
+        ],
+        requirements: [
+            "Quiet environment for recording",
+            "Ability to verbalize internal thoughts",
+            "High-speed internet"
+        ],
+        payoutInfo: "$10-$60 per test (usually 20 mins).",
+        quests: [
+            "Complete Practice Test",
+            "Check for New Tests",
+            "Submit 1 Full Report",
+            "Verify Payout Status"
+        ],
+        tools: [
+            { name: "UserTesting", url: "https://www.usertesting.com", icon: "🧪" },
+            { name: "TryMyUI", url: "https://www.trymyui.com", icon: "🔍" },
+            { name: "Userlytics", url: "https://www.userlytics.com", icon: "👁️" }
+        ]
+    },
+    data: {
+        title: "Data Oracle",
+        mission: "Transform raw data into profitable business insights.",
+        workflow: [
+            "Learn SQL and Google Analytics.",
+            "Build a portfolio of data visualizations.",
+            "Offer freelance data auditing services.",
+            "Consult with agencies on their reporting."
+        ],
+        requirements: [
+            "Analytical mindset",
+            "Excel/Google Sheets mastery",
+            "Visualization skills (Tableau/Looker)"
+        ],
+        payoutInfo: "Project-based or monthly retainer ($3k-$12k/mo).",
+        quests: [
+            "Clean Dataset",
+            "Create Dashboard",
+            "Identify 1 Growth Trend",
+            "Present Findings"
+        ],
+        tools: [
+            { name: "Google Analytics", url: "https://analytics.google.com", icon: "📊" },
+            { name: "Looker Studio", url: "https://lookerstudio.google.com", icon: "📈" },
+            { name: "Excel", url: "https://www.microsoft.com/en-us/microsoft-365/excel", icon: "📗" }
+        ]
+    },
+    rankrent: {
+        title: "Local SEO Lord",
+        mission: "Rank local business sites and rent them for profit.",
+        workflow: [
+            "Pick a local niche (Plumbing, Roofing).",
+            "Build and rank a lead-gen site in a city.",
+            "Verify a Google Business Profile (GMB).",
+            "Rent the leads/site to a local business."
+        ],
+        requirements: [
+            "Deep SEO knowledge",
+            "Local networking skills",
+            "Patience (3-6 months to rank)"
+        ],
+        payoutInfo: "Monthly rent ($500-$2000 per site).",
+        quests: [
+            "Optimize GMB Profile",
+            "Build 5 Local Backlinks",
+            "Track Keyword Position",
+            "Call Potential Partner"
+        ],
+        tools: [
+            { name: "BrightLocal", url: "https://www.brightlocal.com", icon: "📍" },
+            { name: "Ahrefs", url: "https://ahrefs.com", icon: "🔍" },
+            { name: "GMB", url: "https://www.google.com/business", icon: "📦" }
+        ]
+    },
+    appresell: {
+        title: "White Labeler",
+        mission: "Resell software solutions under your own brand.",
+        workflow: [
+            "Find a white-label software (GoHighLevel).",
+            "Set up your agency branding and sub-accounts.",
+            "Package it with your own services.",
+            "Sell to local businesses as an all-in-one solution."
+        ],
+        requirements: [
+            "Sales & CRM knowledge",
+            "Basic tech setup skills",
+            "Marketing ability"
+        ],
+        payoutInfo: "Monthly subscription fees from clients.",
+        quests: [
+            "Set Up White Label Brand",
+            "Onboard 1 Trial User",
+            "Create Snapshots",
+            "Run Outreach Campaign"
+        ],
+        tools: [
+            { name: "GoHighLevel", url: "https://www.gohighlevel.com", icon: "🚀" },
+            { name: "AppSumo", url: "https://appsumo.com", icon: "🌮" },
+            { name: "AgencyAnalytics", url: "https://agencyanalytics.com", icon: "📊" }
+        ]
     }
 };
 
-document.addEventListener(\'DOMContentLoaded\', () => {
+const initPage = () => {
     const params = new URLSearchParams(window.location.search);
-const cardKey = params.get(\'card\');
+    const cardKey = params.get('card');
 
     if (!cardKey || !cardData[cardKey]) {
-    document.getElementById(\'card-title\').innerText = "Unknown Realm";
+        const titleEl = document.getElementById('card-title');
+        if (titleEl) titleEl.innerText = "Unknown Realm";
         return;
-}
+    }
 
-const data = cardData[cardKey];
+    const data = cardData[cardKey];
 
-document.getElementById(\'card-title\').innerText = data.title;
+    // Populate UI
+    const titleEl = document.getElementById('card-title');
+    if (titleEl) titleEl.innerText = data.title;
     document.title = `${data.title} - Play Mode`;
-document.getElementById(\'mission-desc\').innerText = data.mission;
+
+    const missionEl = document.getElementById('mission-desc');
+    if (missionEl) missionEl.innerText = data.mission;
 
     // Workflow
-    const workflowList = document.getElementById(\'workflow-list\');
+    const workflowList = document.getElementById('workflow-list');
     if (workflowList && data.workflow) {
-    workflowList.innerHTML = data.workflow.map(step => `<li>${step}</li>`).join(\'\');
+        workflowList.innerHTML = data.workflow.map(step => `<li>${step}</li>`).join('');
     }
 
-// Requirements
-const reqList = document.getElementById(\'requirements-list\');
+    // Requirements
+    const reqList = document.getElementById('requirements-list');
     if (reqList && data.requirements) {
-    reqList.innerHTML = data.requirements.map(req => `<li>${req}</li>`).join(\'\');
+        reqList.innerHTML = data.requirements.map(req => `<li>${req}</li>`).join('');
     }
 
-// Payout
-const payoutText = document.getElementById(\'payout-text\');
+    // Payout
+    const payoutText = document.getElementById('payout-text');
     if (payoutText && data.payoutInfo) {
-    payoutText.innerText = data.payoutInfo;
-}
-
-// Quests
-const questList = document.getElementById(\'quest-list\');
-    data.quests.forEach(q => {
-    const li = document.createElement(\'li\');
-        li.innerHTML = `<label><input type="checkbox"> <span>${q}</span></label>`;
-    questList.appendChild(li);
-});
-
-// Tools
-const toolsGrid = document.getElementById(\'tools-grid\');
-    data.tools.forEach(tool => {
-    const a = document.createElement(\'a\');
-        a.href = tool.url;
-    a.target = "_blank";
-    a.className = "tool-card";
-    a.innerHTML = `
-            <div class="tool-icon">${tool.icon}</div>
-            <div class="tool-name">${tool.name}</div>
-        `;
-    toolsGrid.appendChild(a);
-});
-
-// Timer Logic
-let time = 25 * 60;
-let timerId = null;
-const display = document.getElementById(\'timer\');
-    const startBtn = document.getElementById(\'start-timer\');
-    const resetBtn = document.getElementById(\'reset-timer\');
-
-    function updateDisplay() {
-        const m = Math.floor(time / 60).toString().padStart(2, \'0\');
-        const s = (time % 60).toString().padStart(2, \'0\');
-        display.innerText = `${m}:${s}`;
+        payoutText.innerText = data.payoutInfo;
     }
 
-    startBtn.addEventListener(\'click\', () => {
-        if (timerId) {
-    clearInterval(timerId);
-    timerId = null;
-    startBtn.innerText = "Focus";
-} else {
-    startBtn.innerText = "Pause";
-    timerId = setInterval(() => {
-        time--;
-        if (time < 0) time = 0;
-        updateDisplay();
-        if (time === 0) clearInterval(timerId);
-    }, 1000);
-}
-    });
+    // Quests
+    const questList = document.getElementById('quest-list');
+    if (questList && data.quests) {
+        questList.innerHTML = '';
+        data.quests.forEach(q => {
+            const li = document.createElement('li');
+            li.innerHTML = `<label><input type="checkbox"> <span>${q}</span></label>`;
+            questList.appendChild(li);
+        });
+    }
 
-resetBtn.addEventListener(\'click\', () => {
-        clearInterval(timerId);
-timerId = null;
-time = 25 * 60;
-updateDisplay();
-startBtn.innerText = "Focus";
-    });
+    // Tools
+    const toolsGrid = document.getElementById('tools-grid');
+    if (toolsGrid && data.tools) {
+        toolsGrid.innerHTML = '';
+        data.tools.forEach(tool => {
+            const a = document.createElement('a');
+            a.href = tool.url;
+            a.target = "_blank";
+            a.className = "tool-card";
+            a.innerHTML = `
+                <div class="tool-icon">${tool.icon}</div>
+                <div class="tool-name">${tool.name}</div>
+            `;
+            toolsGrid.appendChild(a);
+        });
+    }
 
-// Persistence
-let playerStats = JSON.parse(localStorage.getItem(\'fsm_stats\')) || { xp: 0, level: 1, earnings: 0, questsDone: 0 };
+    // Timer Logic
+    let time = 25 * 60;
+    let timerId = null;
+    const display = document.getElementById('timer');
+    const startBtn = document.getElementById('start-timer');
+    const resetBtn = document.getElementById('reset-timer');
+
+    if (display && startBtn && resetBtn) {
+        function updateDisplay() {
+            const m = Math.floor(time / 60).toString().padStart(2, '0');
+            const s = (time % 60).toString().padStart(2, '0');
+            display.innerText = `${m}:${s}`;
+        }
+
+        startBtn.addEventListener('click', () => {
+            if (timerId) {
+                clearInterval(timerId);
+                timerId = null;
+                startBtn.innerText = "Focus";
+            } else {
+                startBtn.innerText = "Pause";
+                timerId = setInterval(() => {
+                    time--;
+                    if (time < 0) time = 0;
+                    updateDisplay();
+                    if (time === 0) {
+                        clearInterval(timerId);
+                        alert("Session complete! Log your progress.");
+                    }
+                }, 1000);
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            clearInterval(timerId);
+            timerId = null;
+            time = 25 * 60;
+            updateDisplay();
+            startBtn.innerText = "Focus";
+        });
+    }
+
+    // Stats & Persistence
+    let playerStats = JSON.parse(localStorage.getItem('fsm_stats')) || { xp: 0, level: 1, earnings: 0, questsDone: 0 };
 
     function updateStatsUI() {
-        document.getElementById(\'level-stat\').innerText = playerStats.level;
-        document.getElementById(\'earnings-stat\').innerText = \'$\' + playerStats.earnings.toLocaleString();
-        document.getElementById(\'quests-stat\').innerText = playerStats.questsDone;
+        const levelStat = document.getElementById('level-stat');
+        const earningsStat = document.getElementById('earnings-stat');
+        const questsStat = document.getElementById('quests-stat');
+        const xpBar = document.getElementById('xp-bar');
 
-        const xpForNext = playerStats.level * 100;
-        const percent = Math.min(100, (playerStats.xp / xpForNext) * 100);
-        const xpBar = document.getElementById(\'xp-bar\');
-        if (xpBar) xpBar.style.width = percent + \'%\';
+        if (levelStat) levelStat.innerText = playerStats.level;
+        if (earningsStat) earningsStat.innerText = '$' + playerStats.earnings.toLocaleString();
+        if (questsStat) questsStat.innerText = playerStats.questsDone;
+
+        if (xpBar) {
+            const xpForNext = playerStats.level * 100;
+            const percent = Math.min(100, (playerStats.xp / xpForNext) * 100);
+            xpBar.style.width = percent + '%';
+        }
     }
     updateStatsUI();
 
-function saveStats() {
-    localStorage.setItem(\'fsm_stats\', JSON.stringify(playerStats));
+    function saveStats() {
+        localStorage.setItem('fsm_stats', JSON.stringify(playerStats));
         updateStatsUI();
-}
-
-document.getElementById(\'add-revenue-btn\').addEventListener(\'click\', () => {
-        const amt = parseFloat(document.getElementById(\'revenue-input\').value);
-        if (!isNaN(amt) && amt > 0) {
-    playerStats.earnings += amt;
-    playerStats.xp += amt * 0.1;
-    saveStats();
-    document.getElementById(\'revenue-input\').value = \'\';
-        }
-    });
-
-questList.addEventListener(\'change\', (e) => {
-        if (e.target.type === \'checkbox\') {
-if (e.target.checked) {
-    playerStats.questsDone++;
-    playerStats.xp += 25;
-    if (playerStats.xp >= playerStats.level * 100) {
-        playerStats.level++;
-        playerStats.xp = 0;
     }
-} else {
-    playerStats.questsDone--;
-    playerStats.xp -= 25;
-}
-saveStats();
-        }
-    });
 
-const pad = document.getElementById(\'scratchpad\');
-    pad.value = localStorage.getItem(`fsm_scratchpad_${cardKey}`) || \'\';
-    pad.addEventListener(\'input\', () => {
-        localStorage.setItem(`fsm_scratchpad_${cardKey}`, pad.value);
-    });
-});
+    const addRevBtn = document.getElementById('add-revenue-btn');
+    const revInput = document.getElementById('revenue-input');
+    if (addRevBtn && revInput) {
+        addRevBtn.addEventListener('click', () => {
+            const amt = parseFloat(revInput.value);
+            if (!isNaN(amt) && amt > 0) {
+                playerStats.earnings += amt;
+                playerStats.xp += amt * 0.1;
+                saveStats();
+                revInput.value = '';
+            }
+        });
+    }
+
+    if (questList) {
+        questList.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                if (e.target.checked) {
+                    playerStats.questsDone++;
+                    playerStats.xp += 25;
+                    if (playerStats.xp >= playerStats.level * 100) {
+                        playerStats.level++;
+                        playerStats.xp = 0;
+                        alert("🎉 Rank Up! You are now Level " + playerStats.level);
+                    }
+                } else {
+                    playerStats.questsDone--;
+                    playerStats.xp -= 25;
+                }
+                saveStats();
+            }
+        });
+    }
+
+    const pad = document.getElementById('scratchpad');
+    if (pad) {
+        pad.value = localStorage.getItem(`fsm_scratchpad_${cardKey}`) || '';
+        pad.addEventListener('input', () => {
+            localStorage.setItem(`fsm_scratchpad_${cardKey}`, pad.value);
+        });
+    }
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+} else {
+    initPage();
+}

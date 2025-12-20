@@ -662,6 +662,59 @@ header {
     line-height: 1.4;
 }
 
+.checklist {
+    list-style: none;
+    padding: 0;
+}
+
+.checklist li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+.checklist li label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.checklist input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-3);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.checklist input[type="checkbox"]:checked {
+    background: var(--accent-3);
+}
+
+.checklist input[type="checkbox"]:checked::after {
+    content: '✓';
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.checklist li span {
+    line-height: 1.4;
+}
+
 #payout-text {
     font-size: 1.1rem;
     font-weight: 700;
